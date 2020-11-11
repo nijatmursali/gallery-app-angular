@@ -1,0 +1,44 @@
+<section class="hero is-small" style="background-color: rgb(236, 236, 236);">
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="columns is-mobile is-centered">
+        <div class="column is-half">
+
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src={{images[currentPage].url}} alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content">
+                {{images[currentPage].title}}
+              </div>
+            </div>
+          </div>
+
+          <div class="bd-notification is-primary" style="padding-top: 65px;">
+            <nav>
+              <ul class="pagination justify-content-center">
+                <li [ngClass]="{disabled : currentPage === 0}" class="page-item">
+                  <a class="page-link" (click)="currentPage = currentPage - 1" href="#" tabindex="-1">Previous</a>
+                </li>
+                <ng-container *ngFor="let image of images; let i=index;">
+                  <li [ngClass]="{active : i === currentPage}" class="page-item custom-button"
+                    *ngIf="checkWindowIndex(i)">
+                    <a (click)="currentPage = i" class="page-link" href="#">{{i+1}}</a>
+                  </li>
+                </ng-container>
+                <li [ngClass]="{disabled : currentPage === images.length - 1}" class="page-item">
+                  <a class="page-link" href="#" (click)="currentPage = currentPage + 1">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

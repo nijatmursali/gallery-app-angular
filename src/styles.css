@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bulma/css/bulma.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 10%;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 2px;
+  position: relative;
+  vertical-align: top;
+}
