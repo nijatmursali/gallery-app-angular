@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import axios from 'axios';
 
 @Component({
   selector: 'app-root',
@@ -6,46 +8,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  images: any = [];
 
-  currentPage: number = 0;
+  url = "https://picsum.photos/v2/list";
+  constructor(private http: HttpClient) {
+    this.http.get(this.url).toPromise()
+    .then(res => {
+      console.log(res);
+      this.images = res;
 
+      console.log(this.images);
 
-  images = [
-    {
-      title: "New York",
-      url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    },
-    {
-      title: "Test 1",
-      url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    },
-    {
-      title: "Test 2",
-      url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    },
-    {
-      title: "Test 3",
-      url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    },
-    {
-      title: "Test 1",
-      url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    },
-    {
-      title: "Test 2",
-      url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    },
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
-    {
-      title: "Test 1",
-      url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    },
-    {
-      title: "Test 2",
-      url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    },
-  ];
+  }
 
+  currentPage = 0;
   checkWindowIndex(index: number) {
     return Math.abs(this.currentPage - index) < 5;
   }

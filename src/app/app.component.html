@@ -1,38 +1,58 @@
-<section class="hero is-small" style="background-color: rgb(236, 236, 236);">
+<section class="hero is-small" style="background-color: rgb(236, 236, 236)">
   <div class="hero-body">
     <div class="container has-text-centered">
       <div class="columns is-mobile is-centered">
         <div class="column is-half">
-
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src={{images[currentPage].url}} alt="Placeholder image">
+                <img
+                  src="{{ images[currentPage].download_url }}"
+                  alt="Placeholder image"
+                />
               </figure>
             </div>
             <div class="card-content">
               <div class="content">
-                {{images[currentPage].title}}
+                <h2>{{ images[currentPage].author }}</h2>
                 <!-- <h4>{{images[currentPage].title}}</h4> -->
               </div>
             </div>
           </div>
 
-          <div class="bd-notification is-primary" style="padding-top: 65px;">
+          <div class="bd-notification is-primary" style="padding-top: 65px">
             <nav>
               <ul class="pagination justify-content-center">
-                <li [appClass]="{disabled : currentPage === 0}" class="page-item">
+                <li
+                  [appClass]="{ disabled: currentPage === 0 }"
+                  class="page-item"
+                >
                   <!--IMPLEMENTED ng CLASS with own directive -->
-                  <a class="page-link" (click)="currentPage = currentPage - 1" tabindex="-1">Previous</a>
+                  <a
+                    class="page-link"
+                    (click)="currentPage = currentPage - 1"
+                    tabindex="-1"
+                    >Previous</a
+                  >
                 </li>
-                <ng-container *ngFor="let image of images; let i=index;">
-                  <li [ngClass]="{active : i === currentPage}" class="page-item custom-button"
-                    *ngIf="checkWindowIndex(i)">
-                    <a (click)="currentPage = i" class="page-link">{{i+1}}</a>
+                <ng-container *ngFor="let image of images; let i = index">
+                  <li
+                    [ngClass]="{ active: i === currentPage }"
+                    class="page-item custom-button"
+                    *ngIf="checkWindowIndex(i)"
+                  >
+                    <a (click)="currentPage = i" class="page-link">{{
+                      i + 1
+                    }}</a>
                   </li>
                 </ng-container>
-                <li [ngClass]="{disabled : currentPage === images.length - 1}" class="page-item">
-                  <a class="page-link" (click)="currentPage = currentPage + 1">Next</a>
+                <li
+                  [ngClass]="{ disabled: currentPage === images.length - 1 }"
+                  class="page-item"
+                >
+                  <a class="page-link" (click)="currentPage = currentPage + 1"
+                    >Next</a
+                  >
                 </li>
               </ul>
             </nav>
@@ -41,5 +61,4 @@
       </div>
     </div>
   </div>
-
 </section>
